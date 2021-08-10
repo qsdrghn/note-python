@@ -7,3 +7,4 @@
 同时@classmethod因其所修饰的函数必须包含表示类本身的cls形参，所以也可以与类中的其他函数进行交互，并使用该形参进行一般的类实例构造方法来构造新的实例类，而且返回该类。<br>
 scrapy框架中关于spider和crawler的关系，先通过Crawler(spidercls,settings)构造得到我们所写的spider类所对应的crawler，之后通过spidercls.fron_crawler(crawler, *args, **kwargs)构造得到我们的spider，并将该spider和crawler联系起来。<br>
 
+setting和crawler之间的关系，scrapy框架各部件之间的运作关系（代码实现层面的）
