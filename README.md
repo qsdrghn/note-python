@@ -10,6 +10,10 @@
 setting和crawler之间的关系，scrapy框架各部件之间的运作关系（代码实现层面的）<br>
 scrapy0.24版本的官方文档，内附搜索功能：https://doc.scrapy.org/en/0.24/index.html
 <br>
+scrapy的异步处理大概原理
+同时对scheduler中批量的request进行请求得到response，与此同时对早先已经得到的response进行处理，得到下一步的request或者item，前者则放入scheduler准备调度，后者则传入到Item Pipeline进行信息的清晰和保存，同理，在进行上述操作时，会有已经传入过来的item进行后续处理。
+Downloader、Scheduler以及Engine是我们平常不用管的部分，只需在设置setting时设置一些处理延迟以及一些同时处理的请求数目、请求重试次数等变量即可。
+
 <strong>setting的设置问题</strong>
 我们所通过scrapy框架构造的自己的爬虫代码，其中各项设置通过setting，从而实现大部分变量的统一管理。setting由四大部分组成(具体看scrapy官方文档，文档内直接搜索setting即可)，在crawler的实例类开始被构造之前，各个setting配置会根据优先级形成最终所用的setting配置，从而在后续crawler构造时，将二者联系起来，方便后续的使用和传递。<br>
 <strong>crawler和spider之间的关系</strong>
@@ -21,9 +25,6 @@ spider为我们在所写的spaider文件中进行定义，其主要用途为：�
 构建时都应在setting.py将ROBOTSTXT_OBEY的值改为False，表示不适用默认的爬虫请求头规则，剩下的构建方法，目前本人使用过的有以下两种：
 一、可以在定义spider时模仿使用requests库时定义请求头时的操作进行定义，并在后续的Request()请求构建时添加相应的形参；
 二、在setting.py文件中定义DEFAULT_REQUEST_HEADERS（字典变量）。<br>
-
-数据库Mongodb的使用
-一般涉及到大规模的数据爬取时，使用其进行存储，占用空间小，具体其他特点参考爬虫书籍和https://www.jianshu.com/p/69ffcd3c254b
 
 推荐爬虫运行方案
 一、使用传统的命令行进行运行，此时推荐使用log打印日志的方式进行运行情况的输出（个人不熟悉，所以习惯用第二个）；
