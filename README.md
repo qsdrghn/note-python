@@ -9,7 +9,7 @@
 python的类可以继承多个类，即俗称的多继承，其继承规则遵循MRO规则
 # note-scrapy
 setting和crawler之间的关系，scrapy框架各部件之间的运作关系（代码实现层面的）<br>
-scrapy0.24版本的官方文档（https://doc.scrapy.org/en/0.24/index.html）内附搜索功能，框架源代码以及部分看不懂的框架内定义好的规则，通过检索即可了解，以下仅是部分文档内没有，个人总结的踩过的一些坑。
+scrapy0.24版本的官方文档<div>https://doc.scrapy.org/en/0.24/index.html</div>内附搜索功能，框架源代码以及部分看不懂的框架内定义好的规则，通过检索即可了解，以下仅是部分文档内没有，个人总结的踩过的一些坑。
 <br>
 <h3>scrapy的异步处理大概原理</h3>
 同时对scheduler中批量的request进行请求得到response，与此同时对早先已经得到的response进行处理，得到下一步的request或者item，前者则放入scheduler准备调度，后者则传入到Item Pipeline进行信息的清晰和保存，同理，在进行上述操作时，会有已经传入过来的item进行后续处理。
