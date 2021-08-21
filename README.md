@@ -14,7 +14,7 @@ scrapy0.24版本的官方文档<span>https://doc.scrapy.org/en/0.24/index.html</
 <h3>scrapy的异步处理大概原理</h3>
 spider和其他中间件产生的request会先进入scheduler等待调度，与此同时scheduler中已存在的批量的request同时进行请求得到response，与此同时对早先已经得到的response进行处理，得到下一步的request或者item，前者则放入scheduler准备调度，后者则传入到Item Pipeline进行信息的清晰和保存，同理，在进行上述操作时，会有已经传入过来的item进行后续处理。框架在使用Request进行请求时，需要先使用框架内的Request()函数进行请求构建，并将其作为调度器（schedular）中等待调度（向服务器发起请求）。该框架一般会同时发起请求，默认同时发起16个请求，但如此容易被反爬，一般需要在settings.py文件中重新设置CONCURRENT_REQUESTS。<br>
 <h3>中间件及其他部件的使用</h3>
-Downloader、Scheduler以及Engine是我们平常不用管的部分，只需在设置setting时设置一些处理延迟以及一些同时处理的请求数目、请求重试次数等变量即可。两大中间件Downloaer Middleware和Spider Middleware可以自己写，也可以不用管，默认使用框架自带的，通常可能需要自己书写下前者中间件，从而实现符合自己情况的重试中间件、更换代理、Cookies中间件等功能，目前只需要重写重试中间件（已上传，适用于任何情况，可直接使用），其他中间件文件日后使用到会继续构造并上传。
+Downloader、Scheduler以及Engine是我们平常不用管的部分，只需在设置setting时设置一些处理延迟以及一些同时处理的请求数目、请求重试次数等变量即可。两大中间件Downloaer Middleware和Spider Middleware可以自己写，也可以不用管，默认使用框架自带的，通常可能需要自己基于该框架书写下中间件Downloaer Middleware，从而实现符合自己情况的重试中间件、更换代理、Cookies中间件等功能，目前只需要重写重试中间件（已上传，适用于任何情况，可直接使用），其他中间件文件日后使用到会继续构造并上传。
 
 <h3>setting的设置问题</h3>
 我们所通过scrapy框架构造的自己的爬虫代码，其中各项设置通过setting，从而实现大部分变量的统一管理。setting由四大部分组成(具体看scrapy官方文档，文档内直接搜索setting即可)，在crawler的实例类开始被构造之前，各个setting配置会根据优先级形成最终所用的setting配置，从而在后续crawler构造时，将二者联系起来，方便后续的使用和传递。<br>
