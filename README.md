@@ -2,16 +2,16 @@
 <strong>return a or b</strong>
 <br>
 该语句表示：如果a不为None，则返回a;反之返回b。可以用于一些存在备份返回值的返回语句，省去了一个if判断语句。
-<br><br>
+<br>
 类中的初始化函数方法<strong>__init__()</strong>的形参中必须写入self，其指向的是类的实例，并非该类本身，如若拥有一个和类本身交互的函数（即可以在不创建一个类的实例的前提下使用该函数），则也可以借用<strong>@classmethod</strong>。<br>
 同时@classmethod因其所修饰的函数必须包含表示类本身的cls形参，所以也可以与类中的其他函数进行交互，并使用该形参进行一般的类实例构造方法来构造新的实例类，而且返回该类。<br>
 //表示整除，/表示普通的除（返回值为浮点数），最少保留一位小数。
-python的类可以继承多个类，即俗称的多继承
+python的类可以继承多个类，即俗称的多继承，其继承规则遵循MRO规则
 # note-scrapy
 setting和crawler之间的关系，scrapy框架各部件之间的运作关系（代码实现层面的）<br>
-scrapy0.24版本的官方文档，内附搜索功能：https://doc.scrapy.org/en/0.24/index.html
+scrapy0.24版本的官方文档（https://doc.scrapy.org/en/0.24/index.html）内附搜索功能，框架源代码以及部分看不懂的框架内定义好的规则，通过检索即可了解，以下仅是部分文档内没有，个人总结的踩过的一些坑。
 <br>
-scrapy的异步处理大概原理
+<h3>scrapy的异步处理大概原理</h3>
 同时对scheduler中批量的request进行请求得到response，与此同时对早先已经得到的response进行处理，得到下一步的request或者item，前者则放入scheduler准备调度，后者则传入到Item Pipeline进行信息的清晰和保存，同理，在进行上述操作时，会有已经传入过来的item进行后续处理。
 Downloader、Scheduler以及Engine是我们平常不用管的部分，只需在设置setting时设置一些处理延迟以及一些同时处理的请求数目、请求重试次数等变量即可。
 
