@@ -7,7 +7,8 @@
 同时@classmethod因其所修饰的函数必须包含表示类本身的cls形参，所以也可以与类中的其他函数进行交互，并使用该形参进行一般的类实例构造方法来构造新的实例类，而且返回该类。<br>
 //表示整除，/表示普通的除（返回值为浮点数），最少保留一位小数。
 <strong>列表去重：</strong>已有列表l1=[1,1,2,3,2];list(set(l1))即可实现列表去重，set()指将变量转化为集合变量，再使用list()转化为列表变量。<br>
-<strong>操作文件夹和文件：</strong>  os库的相关函数
+<strong>操作文件夹和文件：</strong>  os库的相关函数<br>
+os.listdir(path)，以列表的形式返回path路径下的所有文件的名称<br>
 # note-scrapy
 setting和crawler之间的关系，scrapy框架各部件之间的运作关系（代码实现层面的）<br>
 scrapy0.24版本的官方文档<span>https://doc.scrapy.org/en/0.24/index.html</span>内附搜索功能，框架源代码以及部分看不懂的框架内定义好的规则，通过检索即可了解，以下仅是部分文档内没有，个人总结的踩过的一些坑。<br>
